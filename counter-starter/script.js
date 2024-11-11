@@ -40,3 +40,22 @@ const reset = () => {
   //   set the new updated number (0) in the p tag with id "number"
   numberElement.innerText = number;
 };
+
+function adjustableAdd(step) {
+  let numberElement = document.getElementById("adjustable_number");
+  let number = parseInt(numberElement.value) || 0; // Handle empty or invalid input
+  number = number + step;
+  numberElement.value = number;
+}
+
+function adjustableSubtract(step) {
+  let numberElement = document.getElementById("adjustable_number");
+  let number = parseInt(numberElement.value) || 0; // Handle empty or invalid input
+  number = number - step;
+  numberElement.value = number;
+}
+
+function adjustableReset() {
+  let numberElement = document.getElementById("adjustable_number");
+  numberElement.value = 0;
+}

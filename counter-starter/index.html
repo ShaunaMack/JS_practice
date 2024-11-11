@@ -27,6 +27,30 @@
         <input type="button" value="reset" id="reset" onclick="reset()" />
       </div>
     </div>
+    <div id="wrapper">
+      <input id="adjustable_number" type="text" value="0" />
+      <div id="button-wrapper">
+        <input type="button" value="+1" id="add1" onclick="adjustableAdd(1)" />
+        <input
+          type="button"
+          value="+10"
+          id="add10"
+          onclick="adjustableAdd(10)"
+        />
+        <input
+          type="button"
+          value="-1"
+          id="subtract1"
+          onclick="adjustableSubtract(1)"
+        />
+        <input
+          type="button"
+          value="reset"
+          id="reset"
+          onclick="adjustableReset()"
+        />
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

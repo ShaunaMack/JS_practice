@@ -1,7 +1,7 @@
 let shoppingListItems = ["milk", "eggs", "bread"];
 
 const addItem = () => {
-  let item = document.getElementById("new-item-text").value;
+  let item = document.getElementById("new-item-text").value.trim();
   shoppingListItems.push(item);
   console.log(shoppingListItems);
   updateItems();

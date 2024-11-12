@@ -93,10 +93,76 @@ const createNewTodoItemElement = (task, index) => {
     toggleImportant(index);
   };
 
+  // Move item up button
+  const upButtonElement = document.createElement("input");
+  upButtonElement.type = "button";
+  upButtonElement.value = "⬆️";
+  upButtonElement.onclick = function () {
+    moveTaskUp(index);
+  };
+
+  // Move item down button
+  const downButtonElement = document.createElement("input");
+  downButtonElement.type = "button";
+  downButtonElement.value = "⬇️";
+  downButtonElement.onclick = function () {
+    moveTaskDown(index);
+  };
+
   newTodoTaskElement.appendChild(importantButtonElement);
   newTodoTaskElement.appendChild(completeButtonElement);
+  newTodoTaskElement.appendChild(upButtonElement);
+  newTodoTaskElement.appendChild(downButtonElement);
 
   return newTodoTaskElement;
 };
+
+function moveTaskUp(index) {
+  // if task is not already top of the list
+  if (index > 0) {
+    // Swap tasks
+    [todoTasks[index], todoTasks[index - 1]] = [
+      todoTasks[index - 1],
+      todoTasks[index],
+    ];
+    [todoTasksStatus[index], todoTasksStatus[index - 1]] = [
+      todoTasksStatus[index - 1],
+      todoTasksStatus[index],
+    ];
+    [todoTasksImportance[index], todoTasksImportance[index - 1]] = [
+      todoTasksImportance[index - 1],
+      todoTasksImportance[index],
+    ];
+    [todoDueDate[index], todoDueDate[index - 1]] = [
+      todoDueDate[index - 1],
+      todoDueDate[index],
+    ];
+    updateTodoList();
+  }
+}
+
+function moveTaskDown(index) {
+  // if task is not already bottom of the list
+  if (index < todoTasksImportance.length - 1) {
+    // Swap tasks
+    [todoTasks[index], todoTasks[index + 1]] = [
+      todoTasks[index + 1],
+      todoTasks[index],
+    ];
+    [todoTasksStatus[index], todoTasksStatus[index + 1]] = [
+      todoTasksStatus[index + 1],
+      todoTasksStatus[index],
+    ];
+    [todoTasksImportance[index], todoTasksImportance[index + 1]] = [
+      todoTasksImportance[index + 1],
+      todoTasksImportance[index],
+    ];
+    [todoDueDate[index], todoDueDate[index + 1]] = [
+      todoDueDate[index + 1],
+      todoDueDate[index],
+    ];
+    updateTodoList();
+  }
+}
 
 updateTodoList();

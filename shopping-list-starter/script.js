@@ -19,6 +19,11 @@ const updateItems = () => {
     itemElement.innerText = shoppingItem;
     listElement.appendChild(itemElement);
   }
+
+  // clear the input field after adding the item
+  const inputElement = document.getElementById("new-item-text");
+  inputElement.value = "";
+  inputElement.placeholder = "";
 };
 
 updateItems();

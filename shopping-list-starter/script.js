@@ -26,4 +26,11 @@ const updateItems = () => {
   inputElement.placeholder = "";
 };
 
+const clearList = () => {
+  // Clear the shopping list items from the array and update the list on the page
+  shoppingListItems = [];
+  updateItems();
+};
+
+// call the update items function immediately without any interaction on the page (make sure function is declared above)
 updateItems();

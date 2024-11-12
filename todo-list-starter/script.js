@@ -1,11 +1,13 @@
 let todoTasks = ["Walk Chilli", "Make Dinner"];
 let todoTasksStatus = [false, true];
+let todoTasksImportance = [true, false];
 
 const addTask = () => {
   const newTask = document.getElementById("new-task-text");
   if (newTask.value) {
     todoTasks.push(newTask.value);
     todoTasksStatus.push(false);
+    todoTasksImportance.push(false);
 
     newTask.value = "";
     updateTodoList();
@@ -37,6 +39,16 @@ const toggleComplete = (index) => {
   updateTodoList();
 };
 
+function toggleImportant(index) {
+  if (todoTasksImportance[index] == false) {
+    todoTasksImportance[index] = true;
+  } else {
+    todoTasksImportance[index] = false;
+  }
+  console.log(todoTasksImportance);
+  updateTodoList();
+}
+
 const createNewTodoItemElement = (task, index) => {
   // Create a <p> element to store the task description
   const newTodoTaskTextElement = document.createElement("p");
@@ -53,6 +65,11 @@ const createNewTodoItemElement = (task, index) => {
   newTodoTaskElement.appendChild(newTodoTaskTextElement);
   //   <li><p>"walk chilli</p></li>
 
+  // Apply a CSS class to the important items
+  if (todoTasksImportance[index] == true) {
+    newTodoTaskElement.classList.add("important");
+  }
+
   // Adding a button to mark each item as complete
   const completeButtonElement = document.createElement("input");
   //   <input type="button"></input>
@@ -61,6 +78,16 @@ const createNewTodoItemElement = (task, index) => {
   completeButtonElement.onclick = function () {
     toggleComplete(index);
   };
+  // Important button to add important styling
+  const importantButtonElement = document.createElement("input");
+  importantButtonElement.type = "button";
+  importantButtonElement.value = "Important";
+  importantButtonElement.style.backgroundColor = "red";
+  importantButtonElement.onclick = function () {
+    toggleImportant(index);
+  };
+
+  newTodoTaskElement.appendChild(importantButtonElement);
   newTodoTaskElement.appendChild(completeButtonElement);
 
   return newTodoTaskElement;

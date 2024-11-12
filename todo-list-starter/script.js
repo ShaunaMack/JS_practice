@@ -1,15 +1,21 @@
 let todoTasks = ["Walk Chilli", "Make Dinner"];
 let todoTasksStatus = [false, true];
 let todoTasksImportance = [true, false];
+let todoDueDate = ["11/12/24", "11/12/24"];
 
 const addTask = () => {
   const newTask = document.getElementById("new-task-text");
-  if (newTask.value) {
+  const newDueDate = document.getElementById("new-task-date");
+
+  if (newTask.value && newDueDate.value) {
     todoTasks.push(newTask.value);
     todoTasksStatus.push(false);
     todoTasksImportance.push(false);
+    todoDueDate.push(newDueDate.value);
 
     newTask.value = "";
+    newDueDate.value = "";
+
     updateTodoList();
   }
 };
@@ -52,8 +58,8 @@ function toggleImportant(index) {
 const createNewTodoItemElement = (task, index) => {
   // Create a <p> element to store the task description
   const newTodoTaskTextElement = document.createElement("p");
-  newTodoTaskTextElement.innerText = task;
-  //   <p>"walk chilli</p>
+  newTodoTaskTextElement.innerText = `${task} (Due: ${todoDueDate[index]})`;
+  //   <p>"walk chilli Due: 11/12/24</p>
 
   // Apply a CSS class to the completed items
   if (todoTasksStatus[index] === true) {
